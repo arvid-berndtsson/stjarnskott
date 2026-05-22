@@ -42,7 +42,6 @@ Ensure that the following prerequisites are met before building and installing t
 
 3. **Build the JAR File**: Use Gradle to build the extension.
    ```
-   export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
    ./gradlew embedProxyJar
    ```
 
@@ -53,10 +52,11 @@ Ensure that the following prerequisites are met before building and installing t
 To stage the proxy JAR for local runs:
 
 ```zsh
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 cd mcp-server
 ./gradlew syncProxyJar
 ```
+
+If `java` or `jar` are not already on your `PATH`, configure your local JDK first and then rerun the Gradle command.
 
 Then, from the repository root:
 

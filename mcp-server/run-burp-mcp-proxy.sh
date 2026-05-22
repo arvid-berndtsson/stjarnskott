@@ -17,7 +17,7 @@ fi
 
 if [[ ! -f "$PROXY_JAR" ]]; then
   echo "Proxy jar not found at: $PROXY_JAR" >&2
-  echo "Run 'cd mcp-server && ./gradlew syncProxyJar' before running this script." >&2
+  echo "Run 'cd \"$SCRIPT_DIR\" && ./gradlew syncProxyJar' before running this script." >&2
   exit 1
 fi
 
