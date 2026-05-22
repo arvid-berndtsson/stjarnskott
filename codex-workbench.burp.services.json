@@ -1,0 +1,26 @@
+{
+  "services": [
+    {
+      "id": "burp",
+      "kind": "burp-proxy",
+      "enabled": true,
+      "command": "./integrations/burp/run-burp-mcp-proxy.sh",
+      "args": [],
+      "cwd": ".",
+      "env": {
+        "BURP_MCP_SSE_URL": "http://127.0.0.1:9876/sse"
+      },
+      "health": {
+        "type": "sse",
+        "url": "http://127.0.0.1:9876/sse",
+        "timeoutMs": 4000,
+        "intervalMs": 250
+      },
+      "codex": {
+        "export": true,
+        "name": "burp",
+        "startupTimeoutSec": 30
+      }
+    }
+  ]
+}

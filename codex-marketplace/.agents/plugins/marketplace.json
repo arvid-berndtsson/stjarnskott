@@ -1,0 +1,32 @@
+{
+  "name": "stjarnskott",
+  "interface": {
+    "displayName": "Stjarnskott"
+  },
+  "plugins": [
+    {
+      "name": "burp",
+      "source": {
+        "source": "local",
+        "path": "./plugins/burp"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Security"
+    },
+    {
+      "name": "vanta",
+      "source": {
+        "source": "local",
+        "path": "./plugins/vanta"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Security"
+    }
+  ]
+}

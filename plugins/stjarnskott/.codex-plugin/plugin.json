@@ -1,0 +1,23 @@
+{
+  "name": "stjarnskott",
+  "version": "0.1.0",
+  "description": "Codex plugin for the Stjarnskott security workbench.",
+  "author": {
+    "name": "Arvid Berndtsson"
+  },
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Stjarnskott Workbench",
+    "shortDescription": "Combined Burp and Vanta workbench for Codex.",
+    "longDescription": "Stjarnskott Workbench is the combined install option for operators who want both the Burp-focused local workbench and the Vanta remote MCP workflow in one package.",
+    "developerName": "Arvid Berndtsson",
+    "category": "Security",
+    "capabilities": [
+      "Interactive",
+      "Write",
+      "MCP"
+    ],
+    "defaultPrompt": "Help me launch and use the combined Stjarnskott workbench safely."
+  }
+}

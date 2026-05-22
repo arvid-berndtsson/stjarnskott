@@ -1,0 +1,36 @@
+{
+  "services": [
+    {
+      "id": "burp",
+      "kind": "burp-proxy",
+      "enabled": true,
+      "command": "./integrations/burp/run-burp-mcp-proxy.sh",
+      "args": [],
+      "cwd": ".",
+      "env": {
+        "BURP_MCP_SSE_URL": "http://127.0.0.1:9876"
+      },
+      "health": {
+        "type": "sse",
+        "url": "http://127.0.0.1:9876",
+        "timeoutMs": 4000,
+        "intervalMs": 250
+      },
+      "codex": {
+        "export": true,
+        "name": "burp",
+        "startupTimeoutSec": 30
+      }
+    },
+    {
+      "id": "vanta",
+      "kind": "remote-http",
+      "enabled": true,
+      "url": "https://mcp.vanta.com/mcp",
+      "codex": {
+        "export": true,
+        "name": "vanta"
+      }
+    }
+  ]
+}

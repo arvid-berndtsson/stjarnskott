@@ -1,0 +1,14 @@
+{
+  "services": [
+    {
+      "id": "vanta",
+      "kind": "remote-http",
+      "enabled": true,
+      "url": "https://mcp.vanta.com/mcp",
+      "codex": {
+        "export": true,
+        "name": "vanta"
+      }
+    }
+  ]
+}

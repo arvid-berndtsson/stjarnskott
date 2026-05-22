@@ -1,0 +1,12 @@
+generated/
+node_modules/
+.npm/
+.codex/
+.codex-*/
+.env
+.env.*
+.DS_Store
+img-*.png
+integrations/*/.idea/
+integrations/*/.git.upstream-backup/
+integrations/*/.kotlin/
