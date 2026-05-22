@@ -13,7 +13,7 @@ This workspace is a shared security-tooling workbench. `mcp-server/` is currentl
 
 - Module source: `mcp-server/`
 - Burp extension JAR output: `mcp-server/build/libs/burp-mcp-all.jar`
-- MCP stdio proxy JAR: `mcp-server/libs/mcp-proxy-all.jar`
+- MCP stdio proxy JAR staging path: `mcp-server/build/generated/proxy/mcp-proxy-all.jar`
 - Proxy launcher script: `mcp-server/run-burp-mcp-proxy.sh`
 
 ## Build Notes
@@ -24,6 +24,14 @@ The Burp MCP extension can be rebuilt from `mcp-server/` with:
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 cd mcp-server
 ./gradlew embedProxyJar
+```
+
+To stage the stdio proxy JAR for local runs:
+
+```zsh
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+cd mcp-server
+./gradlew syncProxyJar
 ```
 
 ## Local Setup Expectations
@@ -48,6 +56,9 @@ cd mcp-server
 From the repository root:
 
 ```zsh
+cd mcp-server
+./gradlew syncProxyJar
+cd ..
 ./mcp-server/run-burp-mcp-proxy.sh
 ```
 

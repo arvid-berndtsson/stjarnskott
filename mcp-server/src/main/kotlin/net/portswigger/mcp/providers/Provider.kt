@@ -128,7 +128,7 @@ class ManualProxyInstallerProvider(private val logging: Logging, private val pro
 
         val fileChooser = JFileChooser().apply {
             dialogTitle = "Save proxy jar"
-            selectedFile = File("mcp-proxy.jar")
+            selectedFile = File("mcp-proxy-all.jar")
         }
 
         if (fileChooser.showSaveDialog(null) != JFileChooser.APPROVE_OPTION) {

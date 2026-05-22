@@ -42,10 +42,27 @@ Ensure that the following prerequisites are met before building and installing t
 
 3. **Build the JAR File**: Use Gradle to build the extension.
    ```
+   export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
    ./gradlew embedProxyJar
    ```
 
-   This command compiles the source code and packages it into a JAR file located in `build/libs/burp-mcp-all.jar`.
+   This command builds the vendored `mcp-proxy` source, stages `mcp-proxy-all.jar` under `build/generated/proxy/`, and packages the extension JAR at `build/libs/burp-mcp-all.jar`.
+
+### Running the packaged stdio proxy locally
+
+To stage the proxy JAR for local runs:
+
+```zsh
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+cd mcp-server
+./gradlew syncProxyJar
+```
+
+Then, from the repository root:
+
+```zsh
+./mcp-server/run-burp-mcp-proxy.sh
+```
 
 ### Loading the Extension into Burp Suite
 
@@ -126,7 +143,7 @@ The source code for the proxy server can be found here: [MCP Proxy Server](https
 In order to support MCP Clients which only support Stdio MCP Servers, the extension comes packaged with a proxy server for
 passing requests to the SSE MCP server extension.
 
-If you want to use the Stdio proxy server you can use the extension's installer option to extract the proxy server jar.
+If you want to use the Stdio proxy server directly from this repository, run `./gradlew syncProxyJar` in `mcp-server/` first so `build/generated/proxy/mcp-proxy-all.jar` is available. You can also use the extension's installer option to extract the proxy server jar from Burp.
 Once you have the jar you can add the following command and args to your client configuration:
 ```
 /path/to/packaged/burp/java -jar /path/to/proxy/jar/mcp-proxy-all.jar --sse-url http://127.0.0.1:9876

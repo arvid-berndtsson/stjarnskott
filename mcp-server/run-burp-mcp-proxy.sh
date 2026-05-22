@@ -6,7 +6,7 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 DEFAULT_BURP_APP="/Applications/Burp Suite Community Edition.app"
 BURP_APP_PATH="${BURP_APP_PATH:-$DEFAULT_BURP_APP}"
 BURP_JAVA="${BURP_JAVA_PATH:-$BURP_APP_PATH/Contents/Resources/jre.bundle/Contents/Home/bin/java}"
-PROXY_JAR="$SCRIPT_DIR/libs/mcp-proxy-all.jar"
+PROXY_JAR="$SCRIPT_DIR/build/generated/proxy/mcp-proxy-all.jar"
 SSE_URL="${1:-${BURP_MCP_SSE_URL:-http://127.0.0.1:9876}}"
 
 if [[ ! -x "$BURP_JAVA" ]]; then
@@ -17,7 +17,7 @@ fi
 
 if [[ ! -f "$PROXY_JAR" ]]; then
   echo "Proxy jar not found at: $PROXY_JAR" >&2
-  echo "Build or place mcp-proxy-all.jar under mcp-server/libs/ before running this script." >&2
+  echo "Run 'cd mcp-server && ./gradlew syncProxyJar' before running this script." >&2
   exit 1
 fi
 
