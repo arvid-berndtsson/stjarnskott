@@ -2,7 +2,7 @@ generated/
 node_modules/
 .npm/
 .codex/
-.codex-*/
+/.codex-*/
 .env
 .env.*
 .DS_Store

@@ -1,0 +1,42 @@
+{
+  "name": "vanta",
+  "version": "0.1.0",
+  "description": "Codex plugin for Vanta compliance workflows.",
+  "author": {
+    "name": "Arvid Berndtsson",
+    "url": "https://github.com/arvid-berndtsson/stjarnskott"
+  },
+  "homepage": "https://github.com/arvid-berndtsson/stjarnskott",
+  "repository": "https://github.com/arvid-berndtsson/stjarnskott",
+  "license": "MIT",
+  "keywords": [
+    "vanta",
+    "compliance",
+    "security",
+    "evidence",
+    "controls"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Vanta",
+    "shortDescription": "Review failing tests, controls, evidence gaps, and compliance status from Vanta.",
+    "longDescription": "Vanta helps you inspect failing tests, review control health, summarize evidence gaps, and explore compliance status directly from Codex.",
+    "developerName": "Arvid Berndtsson",
+    "category": "Security",
+    "capabilities": [
+      "Interactive",
+      "Write",
+      "MCP"
+    ],
+    "websiteURL": "https://github.com/arvid-berndtsson/stjarnskott",
+    "privacyPolicyURL": "https://example.com/privacy",
+    "termsOfServiceURL": "https://example.com/terms",
+    "defaultPrompt": [
+      "Use Vanta to review failing tests, control health, and evidence gaps."
+    ],
+    "brandColor": "#1B3A2F",
+    "composerIcon": "./assets/vanta-icon.svg",
+    "logo": "./assets/vanta-icon.svg",
+    "screenshots": []
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "name": "burp",
+  "version": "0.1.0",
+  "description": "Codex plugin for Burp-driven web security workflows.",
+  "author": {
+    "name": "Arvid Berndtsson",
+    "url": "https://github.com/arvid-berndtsson/stjarnskott"
+  },
+  "homepage": "https://github.com/arvid-berndtsson/stjarnskott",
+  "repository": "https://github.com/arvid-berndtsson/stjarnskott",
+  "license": "MIT",
+  "keywords": [
+    "burp",
+    "security",
+    "mcp",
+    "web-testing",
+    "recon"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Burp",
+    "shortDescription": "Analyze Burp history, map web surfaces, run checks, and generate findings.",
+    "longDescription": "Burp helps you summarize proxy history, discover application surface area, run passive and scoped active checks, and generate security findings from Codex.",
+    "developerName": "Arvid Berndtsson",
+    "category": "Security",
+    "capabilities": [
+      "Interactive",
+      "Write",
+      "MCP"
+    ],
+    "websiteURL": "https://github.com/arvid-berndtsson/stjarnskott",
+    "privacyPolicyURL": "https://example.com/privacy",
+    "termsOfServiceURL": "https://example.com/terms",
+    "defaultPrompt": [
+      "Use Burp to analyze proxy history, map surface area, and generate actionable security findings."
+    ],
+    "brandColor": "#0B5FFF",
+    "composerIcon": "./assets/burp-icon.svg",
+    "logo": "./assets/burp-icon.svg",
+    "screenshots": []
+  }
+}
