@@ -34,6 +34,14 @@ The marketplace currently exposes:
 npm test
 ```
 
+Common Vanta endpoints:
+
+- EU default: `https://mcp.eu.vanta.com/mcp`
+- US: `https://mcp.vanta.com/mcp`
+- AUS: `https://mcp.aus.vanta.com/mcp`
+
+If someone needs a different Vanta region than the default EU endpoint, update `codex/services.json` or `codex/services.vanta.json` before running setup/export.
+
 ## Repo Layout
 
 - `.agents/plugins/marketplace.json` makes the repository root a Codex marketplace.

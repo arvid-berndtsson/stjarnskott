@@ -26,7 +26,7 @@
       "id": "vanta",
       "kind": "remote-http",
       "enabled": true,
-      "url": "https://mcp.vanta.com/mcp",
+      "url": "https://mcp.eu.vanta.com/mcp",
       "codex": {
         "export": true,
         "name": "vanta"

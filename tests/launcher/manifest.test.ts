@@ -49,7 +49,7 @@ test('loadManifest loads a valid manifest with stdio and burp services', async (
           id: 'vanta',
           kind: 'remote-http',
           enabled: true,
-          url: 'https://mcp.vanta.com/mcp',
+          url: 'https://mcp.eu.vanta.com/mcp',
           codex: {
             export: true
           }
@@ -65,6 +65,7 @@ test('loadManifest loads a valid manifest with stdio and burp services', async (
   assert.equal(manifest.services[0].kind, 'burp-proxy');
   assert.equal(manifest.services[1].kind, 'stdio-mcp');
   assert.equal(manifest.services[2].kind, 'remote-http');
+  assert.equal(manifest.services[2].url, 'https://mcp.eu.vanta.com/mcp');
 });
 
 test('loadManifest rejects unknown service kinds', async () => {

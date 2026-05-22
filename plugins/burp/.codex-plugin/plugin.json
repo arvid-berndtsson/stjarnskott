@@ -1,6 +1,6 @@
 {
   "name": "burp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Codex plugin for Burp-driven web security workflows.",
   "author": {
     "name": "Arvid Berndtsson",
