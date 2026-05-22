@@ -33,28 +33,25 @@ abstract class EmbedProxyJarTask : DefaultTask() {
 }
 
 abstract class StageProxyJarTask : DefaultTask() {
-    @get:InputDirectory
-    abstract val proxyLibsDir: DirectoryProperty
+    @get:InputFile
+    abstract val vendoredProxyJar: RegularFileProperty
 
     @get:OutputFile
     abstract val stagedProxyJar: RegularFileProperty
 
     @TaskAction
     fun stageJar() {
-        val libsDir = proxyLibsDir.get().asFile
+        val sourceJar = vendoredProxyJar.get().asFile
         val stagedJar = stagedProxyJar.get().asFile
-        val candidates = libsDir
-            .listFiles { file -> file.isFile && file.name.endsWith("all.jar") }
-            ?.sortedByDescending { it.lastModified() }
-            .orEmpty()
 
-        val selectedJar = candidates.firstOrNull()
-            ?: throw GradleException("No proxy shadow jar matching *all.jar found in ${libsDir.absolutePath}")
+        if (!sourceJar.exists()) {
+            throw GradleException("Expected vendored proxy shadow jar at ${sourceJar.absolutePath}")
+        }
 
         stagedJar.parentFile.mkdirs()
-        selectedJar.copyTo(stagedJar, overwrite = true)
+        sourceJar.copyTo(stagedJar, overwrite = true)
 
-        logger.lifecycle("Staged proxy JAR from ${selectedJar.name} to ${stagedJar.absolutePath}")
+        logger.lifecycle("Staged proxy JAR from ${sourceJar.absolutePath} to ${stagedJar.absolutePath}")
     }
 }
 
@@ -109,13 +106,14 @@ application {
 
 val proxyIncludedBuild = gradle.includedBuild("mcp-proxy")
 val generatedProxyJar = layout.buildDirectory.file("generated/proxy/mcp-proxy-all.jar")
+val vendoredProxyShadowJar = layout.projectDirectory.file("vendor/mcp-proxy/build/libs/mcp-proxy-all.jar")
 
 tasks {
     register<StageProxyJarTask>("syncProxyJar") {
         group = "build"
         description = "Stages the vendored MCP proxy shadow jar into a stable generated path"
         dependsOn(proxyIncludedBuild.task(":shadowJar"))
-        proxyLibsDir.set(layout.projectDirectory.dir("vendor/mcp-proxy/build/libs"))
+        vendoredProxyJar.set(vendoredProxyShadowJar)
         stagedProxyJar.set(generatedProxyJar)
     }
 
