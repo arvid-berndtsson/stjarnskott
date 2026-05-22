@@ -64,6 +64,7 @@ class ProxyEndToEndTest {
 
     private fun proxyJarFile(): File {
         val configuredPath = System.getProperty("burp.proxyJar")
+            ?.takeIf { it.isNotBlank() }
             ?: error("Missing required system property: burp.proxyJar")
 
         return File(configuredPath)
@@ -87,8 +88,8 @@ class ProxyEndToEndTest {
         }
 
         val jarFile = proxyJarFile()
-        check(jarFile.exists()) {
-            "Configured proxy JAR does not exist: ${jarFile.absolutePath}"
+        check(jarFile.isFile && jarFile.canRead()) {
+            "Configured proxy JAR is not a readable file: ${jarFile.absolutePath}"
         }
 
         proxyProcess = ProcessBuilder(
