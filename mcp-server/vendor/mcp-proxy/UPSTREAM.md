@@ -12,4 +12,4 @@ Upgrade workflow:
 3. Update this file with the new resolved commit SHA
 
 Notes:
-- The vendored upstream currently includes `gradle/wrapper/gradle-wrapper.jar`, which appears intentionally tracked upstream as part of Gradle wrapper bootstrapping rather than as the built proxy runtime artifact.
+- The vendored upstream currently includes `gradle/wrapper/gradle-wrapper.jar`, which appears intentionally tracked upstream because it is required to bootstrap Gradle for rebuilding and verifying the vendored project, rather than serving as the built proxy runtime artifact.
