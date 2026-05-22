@@ -7,9 +7,15 @@ type PluginConfig = {
   name: string;
   skills?: string;
   mcpServers?: string;
+  homepage?: string;
+  repository?: string;
+  keywords?: string[];
   interface: {
     displayName: string;
     shortDescription: string;
+    brandColor?: string;
+    composerIcon?: string;
+    logo?: string;
   };
 };
 
@@ -24,10 +30,18 @@ test('Burp and Vanta plugins expose separate Codex plugin bundles', async () => 
   assert.equal(burpPlugin.name, 'burp');
   assert.equal(burpPlugin.interface.displayName, 'Burp');
   assert.equal(burpPlugin.mcpServers, './.mcp.json');
+  assert.equal(burpPlugin.homepage, 'https://github.com/arvid-berndtsson/stjarnskott');
+  assert.equal(burpPlugin.interface.composerIcon, './assets/burp-icon.svg');
+  assert.equal(burpPlugin.interface.logo, './assets/burp-icon.svg');
+  assert.equal(burpPlugin.interface.brandColor, '#0B5FFF');
   assert.equal(vantaPlugin.name, 'vanta');
   assert.equal(vantaPlugin.interface.displayName, 'Vanta');
   assert.equal(vantaPlugin.skills, './skills/');
   assert.equal(vantaPlugin.mcpServers, undefined);
+  assert.equal(vantaPlugin.homepage, 'https://github.com/arvid-berndtsson/stjarnskott');
+  assert.equal(vantaPlugin.interface.composerIcon, './assets/vanta-icon.svg');
+  assert.equal(vantaPlugin.interface.logo, './assets/vanta-icon.svg');
+  assert.equal(vantaPlugin.interface.brandColor, '#1B3A2F');
 });
 
 test('split manifest files isolate Burp and Vanta services', async () => {
