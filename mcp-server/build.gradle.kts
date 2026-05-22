@@ -7,25 +7,54 @@ abstract class EmbedProxyJarTask : DefaultTask() {
     @get:InputDirectory
     abstract val projectDir: DirectoryProperty
 
+    @get:InputFile
+    abstract val proxyJarFile: RegularFileProperty
+
     @get:Inject
     abstract val execOperations: ExecOperations
 
     @TaskAction
     fun embedJar() {
         val shadowJar = shadowJarFile.get().asFile
-        val libsDir = projectDir.dir("libs").get().asFile
-        val proxyJarFile = File(libsDir, "mcp-proxy-all.jar")
+        val proxyJar = proxyJarFile.get().asFile
+        val generatedProxyDir = proxyJar.parentFile
 
-        if (!proxyJarFile.exists()) {
-            throw GradleException("Proxy JAR not found at: ${proxyJarFile.absolutePath}")
+        if (!proxyJar.exists()) {
+            throw GradleException("Proxy JAR not found at: ${proxyJar.absolutePath}")
         }
 
         execOperations.exec {
             workingDir(projectDir.get().asFile)
-            commandLine("jar", "uf", shadowJar.absolutePath, "-C", libsDir.absolutePath, proxyJarFile.name)
+            commandLine("jar", "uf", shadowJar.absolutePath, "-C", generatedProxyDir.absolutePath, proxyJar.name)
         }
 
-        logger.lifecycle("Embedded proxy JAR into ${shadowJar.name}")
+        logger.lifecycle("Embedded proxy JAR ${proxyJar.name} into ${shadowJar.name}")
+    }
+}
+
+abstract class StageProxyJarTask : DefaultTask() {
+    @get:InputDirectory
+    abstract val proxyLibsDir: DirectoryProperty
+
+    @get:OutputFile
+    abstract val stagedProxyJar: RegularFileProperty
+
+    @TaskAction
+    fun stageJar() {
+        val libsDir = proxyLibsDir.get().asFile
+        val stagedJar = stagedProxyJar.get().asFile
+        val candidates = libsDir
+            .listFiles { file -> file.isFile && file.name.endsWith("all.jar") }
+            ?.sortedByDescending { it.lastModified() }
+            .orEmpty()
+
+        val selectedJar = candidates.firstOrNull()
+            ?: throw GradleException("No proxy shadow jar matching *all.jar found in ${libsDir.absolutePath}")
+
+        stagedJar.parentFile.mkdirs()
+        selectedJar.copyTo(stagedJar, overwrite = true)
+
+        logger.lifecycle("Staged proxy JAR from ${selectedJar.name} to ${stagedJar.absolutePath}")
     }
 }
 
@@ -78,10 +107,23 @@ application {
     mainClass.set("net.portswigger.mcp.ExtensionBase")
 }
 
+val proxyIncludedBuild = gradle.includedBuild("mcp-proxy")
+val generatedProxyJar = layout.buildDirectory.file("generated/proxy/mcp-proxy-all.jar")
+
 tasks {
+    register<StageProxyJarTask>("syncProxyJar") {
+        group = "build"
+        description = "Stages the vendored MCP proxy shadow jar into a stable generated path"
+        dependsOn(proxyIncludedBuild.task(":shadowJar"))
+        proxyLibsDir.set(layout.projectDirectory.dir("vendor/mcp-proxy/build/libs"))
+        stagedProxyJar.set(generatedProxyJar)
+    }
+
     test {
         useJUnitPlatform()
         systemProperty("file.encoding", "UTF-8")
+        dependsOn("syncProxyJar")
+        systemProperty("burp.proxyJar", generatedProxyJar.get().asFile.absolutePath)
 
         testLogging {
             events("passed", "skipped", "failed")
@@ -132,7 +174,9 @@ tasks {
         group = "build"
         description = "Embeds the MCP proxy JAR into the shadow JAR"
         dependsOn(shadowJar)
+        dependsOn("syncProxyJar")
         shadowJarFile.set(shadowJar.flatMap { it.archiveFile })
+        proxyJarFile.set(generatedProxyJar)
         projectDir.set(layout.projectDirectory)
     }
 
