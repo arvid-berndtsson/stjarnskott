@@ -28,6 +28,6 @@ export function printSummary(statuses: RunningService[]): void {
 export function printNextSteps(): void {
   console.log(`Generated Codex profile fragment: ${GENERATED_PROFILE}`);
   console.log('To make the Codex desktop app use these MCP servers, run:');
-  console.log('  node --experimental-transform-types plugins/codex/src/cli.ts install');
+  console.log('  node --experimental-transform-types codex/src/cli.ts install');
 }
 

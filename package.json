@@ -6,9 +6,9 @@
     "packages/*"
   ],
   "scripts": {
-    "start:mcps": "node --experimental-transform-types plugins/codex/src/cli.ts start",
-    "export:codex": "node --experimental-transform-types plugins/codex/src/cli.ts export",
-    "workflow": "node --experimental-transform-types plugins/codex/src/cli.ts workflow",
+    "start:mcps": "node --experimental-transform-types codex/src/cli.ts start",
+    "export:codex": "node --experimental-transform-types codex/src/cli.ts export",
+    "workflow": "node --experimental-transform-types codex/src/cli.ts workflow",
     "test": "node --experimental-transform-types --test tests/**/*.test.ts"
   }
 }

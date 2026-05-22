@@ -17,8 +17,8 @@ test('findWorkspaceRoot discovers the repo root from a nested path', async () =>
   const root = await mkdtemp(path.join(tmpdir(), 'stjarnskott-plugin-'));
   const nested = path.join(root, 'a', 'b', 'c');
   await mkdir(nested, { recursive: true });
-  await mkdir(path.join(root, 'plugins', 'codex'), { recursive: true });
-  await writeFile(path.join(root, 'plugins/codex/services.json'), '{"services":[]}\n', 'utf8');
+  await mkdir(path.join(root, 'codex'), { recursive: true });
+  await writeFile(path.join(root, 'codex/services.json'), '{"services":[]}\n', 'utf8');
 
   const detected = await findWorkspaceRoot({ startDir: nested });
 
@@ -42,8 +42,8 @@ test('checkBurpHealth returns guided setup steps when the listener is down', asy
 
 test('prepareCodexForBurp runs export and install when asked', async () => {
   const root = await mkdtemp(path.join(tmpdir(), 'stjarnskott-plugin-'));
-  await mkdir(path.join(root, 'plugins', 'codex'), { recursive: true });
-  await writeFile(path.join(root, 'plugins/codex/services.json'), '{"services":[]}\n', 'utf8');
+  await mkdir(path.join(root, 'codex'), { recursive: true });
+  await writeFile(path.join(root, 'codex/services.json'), '{"services":[]}\n', 'utf8');
 
   const calls: Array<{ command: string; args: string[]; cwd: string }> = [];
   const result = await prepareCodexForBurp({
@@ -68,7 +68,7 @@ test('prepareCodexForBurp runs export and install when asked', async () => {
   });
   assert.deepEqual(calls[1], {
     command: 'node',
-    args: ['--experimental-transform-types', 'plugins/codex/src/cli.ts', 'install'],
+    args: ['--experimental-transform-types', 'codex/src/cli.ts', 'install'],
     cwd: root
   });
 });
@@ -102,8 +102,8 @@ test('summarizeBurpHistory normalizes endpoints from Burp history', async () => 
 
 test('runStjarnskottWorkflow writes findings artifacts in limited mode fallback', async () => {
   const root = await mkdtemp(path.join(tmpdir(), 'stjarnskott-plugin-'));
-  await mkdir(path.join(root, 'plugins', 'codex'), { recursive: true });
-  await writeFile(path.join(root, 'plugins/codex/services.json'), '{"services":[]}\n', 'utf8');
+  await mkdir(path.join(root, 'codex'), { recursive: true });
+  await writeFile(path.join(root, 'codex/services.json'), '{"services":[]}\n', 'utf8');
 
   const fetchImpl = async (url, init = {}) => {
     const target = new URL(url);

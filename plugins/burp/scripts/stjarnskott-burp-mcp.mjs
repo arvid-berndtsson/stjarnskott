@@ -36,7 +36,7 @@ const tools = [
   },
   {
     name: TOOL_NAMES.findWorkspace,
-    description: 'Locate the Stjarnskott workspace by looking for plugins/codex/services.json.',
+    description: 'Locate the Stjarnskott workspace by looking for codex/services.json.',
     inputSchema: {
       type: 'object',
       properties: {

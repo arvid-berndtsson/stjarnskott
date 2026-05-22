@@ -11,7 +11,7 @@ const execFileAsync = promisify(execFile);
 test('cli export writes a Codex-ready config artifact for a healthy stdio service', async () => {
   const dir = await mkdtemp(path.join(tmpdir(), 'stjarnskott-cli-'));
   const manifestPath = path.join(dir, 'manifest.json');
-  const cliPath = path.resolve('plugins/codex/src/cli.ts');
+  const cliPath = path.resolve('codex/src/cli.ts');
   const fixturePath = path.resolve('tests/fixtures/idle-mcp.ts');
 
   await writeFile(
@@ -58,7 +58,7 @@ test('cli export writes a Codex-ready config artifact for a healthy stdio servic
 test('cli export writes a Codex-ready config artifact for a remote HTTP service', async () => {
   const dir = await mkdtemp(path.join(tmpdir(), 'stjarnskott-cli-'));
   const manifestPath = path.join(dir, 'manifest.json');
-  const cliPath = path.resolve('plugins/codex/src/cli.ts');
+  const cliPath = path.resolve('codex/src/cli.ts');
 
   await writeFile(
     manifestPath,
