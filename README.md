@@ -16,6 +16,8 @@ The marketplace currently exposes:
 - `Burp`
 - `Vanta`
 
+`Vanta` now includes a plugin-local remote MCP definition with the EU endpoint as its default.
+
 ## Codex Paths
 
 - Marketplace source root: repository root via `.agents/plugins/marketplace.json`
@@ -41,6 +43,8 @@ Common Vanta endpoints:
 - AUS: `https://mcp.aus.vanta.com/mcp`
 
 If someone needs a different Vanta region than the default EU endpoint, update `codex/services.json` or `codex/services.vanta.json` before running setup/export.
+
+The Vanta marketplace plugin itself also points at the EU endpoint by default through `plugins/vanta/.mcp.json`.
 
 ## Repo Layout
 

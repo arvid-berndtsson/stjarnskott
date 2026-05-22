@@ -1,6 +1,6 @@
 {
   "name": "vanta",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Codex plugin for Vanta compliance workflows.",
   "author": {
     "name": "Arvid Berndtsson",
@@ -17,6 +17,7 @@
     "controls"
   ],
   "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Vanta",
     "shortDescription": "Review failing tests, controls, evidence gaps, and compliance status from Vanta.",

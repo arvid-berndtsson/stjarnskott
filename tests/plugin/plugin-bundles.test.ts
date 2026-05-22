@@ -37,7 +37,7 @@ test('Burp and Vanta plugins expose separate Codex plugin bundles', async () => 
   assert.equal(vantaPlugin.name, 'vanta');
   assert.equal(vantaPlugin.interface.displayName, 'Vanta');
   assert.equal(vantaPlugin.skills, './skills/');
-  assert.equal(vantaPlugin.mcpServers, undefined);
+  assert.equal(vantaPlugin.mcpServers, './.mcp.json');
   assert.equal(vantaPlugin.homepage, 'https://github.com/arvid-berndtsson/stjarnskott');
   assert.equal(vantaPlugin.interface.composerIcon, './assets/vanta-icon.svg');
   assert.equal(vantaPlugin.interface.logo, './assets/vanta-icon.svg');
