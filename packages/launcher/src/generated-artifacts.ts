@@ -32,7 +32,7 @@ export async function writeGeneratedFiles(statuses: RunningService[], workspaceR
           message: status.message ?? null
         })),
         nextStep: exported.length > 0
-          ? 'Run "node --experimental-transform-types codex/src/cli.ts install" to merge the exported servers into ~/.codex/config.toml'
+          ? 'Run "node --experimental-transform-types plugins/codex/src/cli.ts install" to merge the exported servers into ~/.codex/config.toml'
           : 'No MCP servers were exportable for this run. Check the service status messages and logs, then rerun the launcher.'
       },
       null,

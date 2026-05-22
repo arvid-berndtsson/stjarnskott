@@ -4,8 +4,8 @@ This directory is the OpenAI-aligned marketplace source root for the Stjarnskott
 
 Use it in Codex in one of these ways:
 
-- Local folder source: point Codex at `codex/marketplace/`
-- Git repo source: point Codex at the repository and set `Sparse paths` to `codex/marketplace`
+- Local folder source: point Codex at `plugins/codex/marketplace/`
+- Git repo source: point Codex at the repository and set `Sparse paths` to `plugins/codex/marketplace`
 
 This source root intentionally contains both:
 

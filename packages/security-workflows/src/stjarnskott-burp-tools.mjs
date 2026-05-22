@@ -146,12 +146,12 @@ export async function prepareCodexForBurp({
   if (install) {
     const installResult = await runCommand({
       command: 'node',
-      args: ['--experimental-transform-types', 'codex/src/cli.ts', 'install'],
+      args: ['--experimental-transform-types', 'plugins/codex/src/cli.ts', 'install'],
       cwd: detectedRoot
     });
     commands.push({
       command: 'node',
-      args: ['--experimental-transform-types', 'codex/src/cli.ts', 'install'],
+      args: ['--experimental-transform-types', 'plugins/codex/src/cli.ts', 'install'],
       exitCode: installResult.exitCode
     });
 
@@ -213,9 +213,9 @@ export function buildBurpHealthMessage({ burpRunning, listenerReachable, sseUrl,
     '1. Make sure Burp Suite is open.',
     '2. In Burp, open Extensions and confirm burp-mcp-all.jar is loaded.',
     '3. Open the MCP tab and enable the listener.',
-    `4. Leave the listener on ${sseUrl} or update codex/services.json to match Burp.`,
+    `4. Leave the listener on ${sseUrl} or update plugins/codex/services.json to match Burp.`,
     '5. Rerun the launcher or the prepare tool.',
-    'If you do not want Burp for this run, disable the burp service in codex/services.json or use passive shell checks only.',
+    'If you do not want Burp for this run, disable the burp service in plugins/codex/services.json or use passive shell checks only.',
     `Probe detail: ${listenerDetail}`
   ].join(' ');
 }
@@ -232,7 +232,7 @@ function buildPassiveWebCheckMessage(url, head, robots, security) {
 async function findMarkerRoot(startDir) {
   let current = startDir;
   while (true) {
-    const marker = path.join(current, 'codex/services.json');
+    const marker = path.join(current, 'plugins/codex/services.json');
     try {
       await readFile(marker, 'utf8');
       return current;
