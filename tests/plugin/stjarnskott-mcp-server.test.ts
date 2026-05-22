@@ -4,7 +4,7 @@ import { spawn } from 'node:child_process';
 import path from 'node:path';
 
 test('plugin MCP server lists the expected Stjarnskott tools', async () => {
-  const scriptPath = path.resolve('platforms/codex/marketplace/plugins/burp/scripts/stjarnskott-burp-mcp.mjs');
+  const scriptPath = path.resolve('codex/marketplace/plugins/burp/scripts/stjarnskott-burp-mcp.mjs');
   const child = spawn(process.execPath, [scriptPath], {
     env: {
       ...process.env,

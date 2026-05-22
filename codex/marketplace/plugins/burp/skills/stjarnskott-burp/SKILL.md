@@ -21,8 +21,8 @@ This plugin is for:
 
 - Burp extension JAR: `integrations/burp/build/libs/burp-mcp-all.jar`
 - Burp proxy launcher: `integrations/burp/run-burp-mcp-proxy.sh`
-- Burp-only manifest: `platforms/codex/services.burp.json`
-- Codex wrapper CLI: `platforms/codex/src/cli.ts`
+- Burp-only manifest: `codex/services.burp.json`
+- Codex wrapper CLI: `codex/src/cli.ts`
 - Generated Codex output: `generated/codex/`
 
 ## Commands
@@ -30,14 +30,14 @@ This plugin is for:
 Use these commands from the repository root:
 
 ```bash
-node --experimental-transform-types platforms/codex/src/cli.ts export --manifest platforms/codex/services.burp.json
-node --experimental-transform-types platforms/codex/src/cli.ts install
+node --experimental-transform-types codex/src/cli.ts export --manifest codex/services.burp.json
+node --experimental-transform-types codex/src/cli.ts install
 ```
 
 If Burp should stay running as a managed service for the session:
 
 ```bash
-node --experimental-transform-types platforms/codex/src/cli.ts start --manifest platforms/codex/services.burp.json
+node --experimental-transform-types codex/src/cli.ts start --manifest codex/services.burp.json
 ```
 
 ## Bundled MCP Tools

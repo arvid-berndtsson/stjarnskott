@@ -55,7 +55,7 @@ export async function loadSecurityWorkflowModule({ workspaceRoot, startDir } = {
 async function findMarkerRoot(startDir) {
   let current = startDir;
   while (true) {
-    const marker = path.join(current, 'platforms/codex/services.json');
+    const marker = path.join(current, 'codex/services.json');
     try {
       await readFile(marker, 'utf8');
       return current;

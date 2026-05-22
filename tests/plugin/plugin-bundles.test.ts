@@ -15,10 +15,10 @@ type PluginConfig = {
 
 test('Burp and Vanta plugins expose separate Codex plugin bundles', async () => {
   const burpPlugin = JSON.parse(
-    await readFile(path.resolve('platforms/codex/marketplace/plugins/burp/.codex-plugin/plugin.json'), 'utf8')
+    await readFile(path.resolve('codex/marketplace/plugins/burp/.codex-plugin/plugin.json'), 'utf8')
   ) as PluginConfig;
   const vantaPlugin = JSON.parse(
-    await readFile(path.resolve('platforms/codex/marketplace/plugins/vanta/.codex-plugin/plugin.json'), 'utf8')
+    await readFile(path.resolve('codex/marketplace/plugins/vanta/.codex-plugin/plugin.json'), 'utf8')
   ) as PluginConfig;
 
   assert.equal(burpPlugin.name, 'burp');
@@ -32,10 +32,10 @@ test('Burp and Vanta plugins expose separate Codex plugin bundles', async () => 
 
 test('split manifest files isolate Burp and Vanta services', async () => {
   const burpManifest = JSON.parse(
-    await readFile(path.resolve('platforms/codex/services.burp.json'), 'utf8')
+    await readFile(path.resolve('codex/services.burp.json'), 'utf8')
   ) as { services: Array<{ id: string }> };
   const vantaManifest = JSON.parse(
-    await readFile(path.resolve('platforms/codex/services.vanta.json'), 'utf8')
+    await readFile(path.resolve('codex/services.vanta.json'), 'utf8')
   ) as { services: Array<{ id: string }> };
 
   assert.deepEqual(burpManifest.services.map((service) => service.id), ['burp']);
@@ -44,7 +44,7 @@ test('split manifest files isolate Burp and Vanta services', async () => {
 
 test('repo marketplace exposes separate Stjarnskott plugin install choices', async () => {
   const marketplace = JSON.parse(
-    await readFile(path.resolve('platforms/codex/marketplace/.agents/plugins/marketplace.json'), 'utf8')
+    await readFile(path.resolve('codex/marketplace/.agents/plugins/marketplace.json'), 'utf8')
   ) as {
     name: string;
     interface: { displayName: string };

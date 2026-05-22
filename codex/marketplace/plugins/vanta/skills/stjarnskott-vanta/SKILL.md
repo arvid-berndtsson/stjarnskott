@@ -18,9 +18,9 @@ This plugin is for:
 
 ## Local Files
 
-- Vanta-only manifest: `platforms/codex/services.vanta.json`
-- Combined manifest: `platforms/codex/services.json`
-- Codex wrapper CLI: `platforms/codex/src/cli.ts`
+- Vanta-only manifest: `codex/services.vanta.json`
+- Combined manifest: `codex/services.json`
+- Codex wrapper CLI: `codex/src/cli.ts`
 - Generated Codex output: `generated/codex/`
 
 ## Commands
@@ -28,8 +28,8 @@ This plugin is for:
 Use these commands from the repository root:
 
 ```bash
-node --experimental-transform-types platforms/codex/src/cli.ts export --manifest platforms/codex/services.vanta.json
-node --experimental-transform-types platforms/codex/src/cli.ts install
+node --experimental-transform-types codex/src/cli.ts export --manifest codex/services.vanta.json
+node --experimental-transform-types codex/src/cli.ts install
 ```
 
 ## Regional Endpoints
