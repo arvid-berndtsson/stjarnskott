@@ -6,20 +6,21 @@ import path from 'node:path';
 
 import {
   checkBurpHealth,
-  findWorkbenchRoot,
+  findWorkspaceRoot,
   prepareCodexForBurp,
   runScopedActiveChecks,
   runStjarnskottWorkflow,
   summarizeBurpHistory
 } from '../../packages/security-workflows/src/index.mjs';
 
-test('findWorkbenchRoot discovers the repo root from a nested path', async () => {
+test('findWorkspaceRoot discovers the repo root from a nested path', async () => {
   const root = await mkdtemp(path.join(tmpdir(), 'stjarnskott-plugin-'));
   const nested = path.join(root, 'a', 'b', 'c');
   await mkdir(nested, { recursive: true });
-  await writeFile(path.join(root, 'codex-workbench.services.json'), '{"services":[]}\n', 'utf8');
+  await mkdir(path.join(root, 'platforms', 'codex'), { recursive: true });
+  await writeFile(path.join(root, 'platforms/codex/services.json'), '{"services":[]}\n', 'utf8');
 
-  const detected = await findWorkbenchRoot({ startDir: nested });
+  const detected = await findWorkspaceRoot({ startDir: nested });
 
   assert.equal(detected, root);
 });
@@ -41,7 +42,8 @@ test('checkBurpHealth returns guided setup steps when the listener is down', asy
 
 test('prepareCodexForBurp runs export and install when asked', async () => {
   const root = await mkdtemp(path.join(tmpdir(), 'stjarnskott-plugin-'));
-  await writeFile(path.join(root, 'codex-workbench.services.json'), '{"services":[]}\n', 'utf8');
+  await mkdir(path.join(root, 'platforms', 'codex'), { recursive: true });
+  await writeFile(path.join(root, 'platforms/codex/services.json'), '{"services":[]}\n', 'utf8');
 
   const calls: Array<{ command: string; args: string[]; cwd: string }> = [];
   const result = await prepareCodexForBurp({
@@ -66,7 +68,7 @@ test('prepareCodexForBurp runs export and install when asked', async () => {
   });
   assert.deepEqual(calls[1], {
     command: 'node',
-    args: ['--experimental-transform-types', 'src/cli.ts', 'install'],
+    args: ['--experimental-transform-types', 'platforms/codex/src/cli.ts', 'install'],
     cwd: root
   });
 });
@@ -100,7 +102,8 @@ test('summarizeBurpHistory normalizes endpoints from Burp history', async () => 
 
 test('runStjarnskottWorkflow writes findings artifacts in limited mode fallback', async () => {
   const root = await mkdtemp(path.join(tmpdir(), 'stjarnskott-plugin-'));
-  await writeFile(path.join(root, 'codex-workbench.services.json'), '{"services":[]}\n', 'utf8');
+  await mkdir(path.join(root, 'platforms', 'codex'), { recursive: true });
+  await writeFile(path.join(root, 'platforms/codex/services.json'), '{"services":[]}\n', 'utf8');
 
   const fetchImpl = async (url, init = {}) => {
     const target = new URL(url);

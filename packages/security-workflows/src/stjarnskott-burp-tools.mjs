@@ -14,7 +14,7 @@ export {
 const execFileAsync = promisify(execFile);
 const DEFAULT_SSE_URL = 'http://127.0.0.1:9876';
 
-export async function findWorkbenchRoot({ startDir = process.cwd(), searchHome = true } = {}) {
+export async function findWorkspaceRoot({ startDir = process.cwd(), searchHome = true } = {}) {
   const explicit = process.env.STJARNSKOTT_WORKSPACE_ROOT;
   if (explicit) {
     const found = await findMarkerRoot(path.resolve(explicit));
@@ -109,7 +109,7 @@ export async function prepareCodexForBurp({
   install = false,
   runCommand = defaultRunCommand
 } = {}) {
-  const detectedRoot = workspaceRoot ?? await findWorkbenchRoot();
+  const detectedRoot = workspaceRoot ?? await findWorkspaceRoot();
   if (!detectedRoot) {
     return {
       ok: false,
@@ -146,12 +146,12 @@ export async function prepareCodexForBurp({
   if (install) {
     const installResult = await runCommand({
       command: 'node',
-      args: ['--experimental-transform-types', 'src/cli.ts', 'install'],
+      args: ['--experimental-transform-types', 'platforms/codex/src/cli.ts', 'install'],
       cwd: detectedRoot
     });
     commands.push({
       command: 'node',
-      args: ['--experimental-transform-types', 'src/cli.ts', 'install'],
+      args: ['--experimental-transform-types', 'platforms/codex/src/cli.ts', 'install'],
       exitCode: installResult.exitCode
     });
 
@@ -213,9 +213,9 @@ export function buildBurpHealthMessage({ burpRunning, listenerReachable, sseUrl,
     '1. Make sure Burp Suite is open.',
     '2. In Burp, open Extensions and confirm burp-mcp-all.jar is loaded.',
     '3. Open the MCP tab and enable the listener.',
-    `4. Leave the listener on ${sseUrl} or update codex-workbench.services.json to match Burp.`,
+    `4. Leave the listener on ${sseUrl} or update platforms/codex/services.json to match Burp.`,
     '5. Rerun the launcher or the prepare tool.',
-    'If you do not want Burp for this run, disable the burp service in codex-workbench.services.json or use passive shell checks only.',
+    'If you do not want Burp for this run, disable the burp service in platforms/codex/services.json or use passive shell checks only.',
     `Probe detail: ${listenerDetail}`
   ].join(' ');
 }
@@ -232,7 +232,7 @@ function buildPassiveWebCheckMessage(url, head, robots, security) {
 async function findMarkerRoot(startDir) {
   let current = startDir;
   while (true) {
-    const marker = path.join(current, 'codex-workbench.services.json');
+    const marker = path.join(current, 'platforms/codex/services.json');
     try {
       await readFile(marker, 'utf8');
       return current;

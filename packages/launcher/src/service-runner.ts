@@ -215,9 +215,9 @@ function classifyBurpFailure(url: string, reason: string, stderr: string): strin
       '1. Make sure Burp Suite is open.',
       '2. In Burp, open Extensions and confirm burp-mcp-all.jar is loaded.',
       '3. Open the MCP tab and enable the listener.',
-      `4. Leave the listener on ${url} or update codex-workbench.services.json to match Burp.`,
+      `4. Leave the listener on ${url} or update platforms/codex/services.json to match Burp.`,
       '5. Rerun the launcher.',
-      'If you do not want Burp for this run, disable the burp service in codex-workbench.services.json or run a subset of services.',
+      'If you do not want Burp for this run, disable the burp service in platforms/codex/services.json or run a subset of services.',
       `Proxy detail: ${reason}`
     ].join(' ');
   }
@@ -230,7 +230,7 @@ function classifyBurpFailure(url: string, reason: string, stderr: string): strin
       '2. Open the MCP tab from the extension and enable the server.',
       `3. Confirm the listener URL matches ${url}.`,
       '4. Rerun the launcher.',
-      'If you do not want Burp for this run, disable the burp service in codex-workbench.services.json.',
+      'If you do not want Burp for this run, disable the burp service in platforms/codex/services.json.',
       `Probe detail: ${reason}`
     ].join(' ');
   }
@@ -242,9 +242,9 @@ function classifyBurpFailure(url: string, reason: string, stderr: string): strin
       '1. Make sure Burp Suite is open.',
       '2. In Burp, open Extensions and confirm burp-mcp-all.jar is loaded.',
       '3. Open the MCP tab and enable the listener.',
-      `4. Leave the listener on ${url} or update codex-workbench.services.json to match Burp.`,
+      `4. Leave the listener on ${url} or update platforms/codex/services.json to match Burp.`,
       '5. Rerun the launcher.',
-      'If you do not want Burp for this run, disable the burp service in codex-workbench.services.json or run a subset of services.',
+      'If you do not want Burp for this run, disable the burp service in platforms/codex/services.json or run a subset of services.',
       `Probe detail: ${reason}`
     ].join(' ');
   }
