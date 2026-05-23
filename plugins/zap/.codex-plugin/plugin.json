@@ -1,0 +1,43 @@
+{
+  "name": "zap",
+  "version": "0.1.1",
+  "description": "Codex plugin for OWASP ZAP MCP workflows.",
+  "author": {
+    "name": "Arvid Berndtsson",
+    "url": "https://github.com/arvid-berndtsson/stjarnskott"
+  },
+  "homepage": "https://github.com/arvid-berndtsson/stjarnskott",
+  "repository": "https://github.com/arvid-berndtsson/stjarnskott",
+  "license": "MIT",
+  "keywords": [
+    "zap",
+    "owasp",
+    "security",
+    "mcp",
+    "dast"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "ZAP",
+    "shortDescription": "Drive OWASP ZAP scans, inspect alerts, and review web security findings from Codex.",
+    "longDescription": "ZAP helps you spider applications, run active and passive scans, inspect alerts and history, and generate reports through the official OWASP ZAP MCP Integration add-on.",
+    "developerName": "Arvid Berndtsson",
+    "category": "Security",
+    "capabilities": [
+      "Interactive",
+      "Write",
+      "MCP"
+    ],
+    "websiteURL": "https://github.com/arvid-berndtsson/stjarnskott",
+    "privacyPolicyURL": "https://example.com/privacy",
+    "termsOfServiceURL": "https://example.com/terms",
+    "defaultPrompt": [
+      "Use ZAP to spider a target, review alerts, and explain the most important web security findings."
+    ],
+    "brandColor": "#2F7D32",
+    "composerIcon": "./assets/zap-icon.svg",
+    "logo": "./assets/zap-icon.svg",
+    "screenshots": []
+  }
+}

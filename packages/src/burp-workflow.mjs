@@ -116,7 +116,7 @@ export async function runScopedActiveChecks({
   };
 }
 
-export async function runStjarnskottWorkflow({
+export async function runBurpWorkflow({
   targetUrl,
   mode = 'passive',
   workspaceRoot,

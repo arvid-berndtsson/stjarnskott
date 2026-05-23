@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { findWorkspaceRoot, loadSecurityWorkflowModule } from './lib/resolve-workspace-module.mjs';
+import { findWorkspaceRoot, loadSharedModule } from './lib/resolve-workspace-module.mjs';
 
 const serverInfo = {
   name: 'stjarnskott-burp',
@@ -293,7 +293,7 @@ async function handleMessage(message) {
 }
 
 async function callTool(name, args) {
-  const { module, workspaceRoot } = await loadSecurityWorkflowModule({
+  const { module, workspaceRoot } = await loadSharedModule({
     workspaceRoot: args.workspace_root,
     startDir: args.start_dir
   });
@@ -322,7 +322,7 @@ async function callTool(name, args) {
         sseUrl: args.sse_url
       });
     case TOOL_NAMES.discoverSurface:
-      return module.runStjarnskottWorkflow({
+      return module.runBurpWorkflow({
         targetUrl: args.target_url,
         workspaceRoot,
         mode: 'passive',
@@ -338,7 +338,7 @@ async function callTool(name, args) {
         findingsPath: args.findings_path
       });
     case TOOL_NAMES.workflow:
-      return module.runStjarnskottWorkflow({
+      return module.runBurpWorkflow({
         targetUrl: args.target_url,
         workspaceRoot,
         mode: args.mode,

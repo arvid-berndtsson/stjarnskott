@@ -31,6 +31,15 @@ export function renderCodexConfig(statuses: ServiceStatus[], workspaceRoot?: str
     }
 
     const envEntries = Object.entries(service.kind === 'remote-http' ? {} : (service.env ?? {})).sort(([left], [right]) => left.localeCompare(right));
+    const headerEntries = Object.entries(service.kind === 'remote-http' ? (service.headers ?? {}) : {}).sort(([left], [right]) => left.localeCompare(right));
+    if (headerEntries.length > 0) {
+      lines.push('');
+      lines.push(`[mcp_servers.${name}.headers]`);
+      for (const [key, value] of headerEntries) {
+        lines.push(`${renderTomlString(key)} = ${renderTomlString(value)}`);
+      }
+    }
+
     if (envEntries.length > 0) {
       lines.push('');
       lines.push(`[mcp_servers.${name}.env]`);

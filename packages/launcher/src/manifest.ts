@@ -28,12 +28,14 @@ function validateService(raw: unknown, index: number): ServiceDefinition {
 
   if (kind === 'remote-http') {
     const url = requireString(service.url, `services[${index}].url`);
+    const headers = optionalStringMap(service.headers, `services[${index}].headers`);
 
     return {
       id,
       kind,
       enabled,
       url,
+      headers,
       codex
     };
   }

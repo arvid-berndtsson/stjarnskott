@@ -39,6 +39,9 @@ test('renderCodexConfig emits Codex mcp_servers TOML for healthy exported servic
         kind: 'remote-http',
         enabled: true,
         url: 'https://mcp.vanta.com/mcp',
+        headers: {
+          Authorization: 'Bearer fixture-token'
+        },
         codex: {
           export: true
         }
@@ -70,6 +73,8 @@ test('renderCodexConfig emits Codex mcp_servers TOML for healthy exported servic
   assert.match(output, /command = "\.\/integrations\/burp\/run-burp-mcp-proxy\.sh"/);
   assert.match(output, /\[mcp_servers\.vanta\]/);
   assert.match(output, /url = "https:\/\/mcp\.vanta\.com\/mcp"/);
+  assert.match(output, /\[mcp_servers\.vanta\.headers\]/);
+  assert.match(output, /"Authorization" = "Bearer fixture-token"/);
   assert.doesNotMatch(output, /skip-me/);
 });
 

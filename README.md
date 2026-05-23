@@ -15,6 +15,7 @@ The marketplace currently exposes:
 
 - `Burp`
 - `Vanta`
+- `ZAP`
 
 `Vanta` now includes a plugin-local remote MCP definition with the EU endpoint as its default.
 
@@ -24,6 +25,7 @@ The marketplace currently exposes:
 - Shared Codex services: `codex/services.json`
 - Burp-only services: `codex/services.burp.json`
 - Vanta-only services: `codex/services.vanta.json`
+- ZAP-only services: `codex/services.zap.json`
 - Codex CLI wrapper: `codex/src/cli.ts`
 - Codex setup script: `codex/scripts/setup.sh`
 - Codex uninstall script: `codex/scripts/uninstall.sh`
@@ -33,6 +35,7 @@ The marketplace currently exposes:
 ```bash
 ./codex/scripts/setup.sh
 ./codex/scripts/uninstall.sh
+npm run prepare:zap -- --url https://127.0.0.1:8282 --security-key "$ZAP_MCP_SECURITY_KEY" --install
 npm test
 ```
 
@@ -45,6 +48,15 @@ Common Vanta endpoints:
 If someone needs a different Vanta region than the default EU endpoint, update `codex/services.json` or `codex/services.vanta.json` before running setup/export.
 
 The Vanta marketplace plugin itself also points at the EU endpoint by default through `plugins/vanta/.mcp.json`.
+
+The ZAP marketplace plugin points at the local MCP Integration add-on default port over HTTP through `plugins/zap/.mcp.json`. If you keep ZAP's default security settings enabled, update the URL to `https://127.0.0.1:8282` or `https://localhost:8282`, trust the ZAP root CA as needed, and include the security key in the `Authorization` header.
+
+Recommended setup for ZAP in this repo:
+
+- install OWASP ZAP and the `MCP Integration` add-on in ZAP
+- enable it in `Options -> MCP Integration`
+- run `npm run prepare:zap -- --url https://127.0.0.1:8282 --security-key "$ZAP_MCP_SECURITY_KEY" --install`
+- if the health check reports certificate issues, either trust the ZAP root CA or retry with local HTTP for development
 
 ## Repo Layout
 

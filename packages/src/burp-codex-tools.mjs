@@ -7,9 +7,9 @@ import { promisify } from 'node:util';
 export {
   generateFindingsReport,
   runScopedActiveChecks,
-  runStjarnskottWorkflow,
+  runBurpWorkflow,
   summarizeBurpHistory
-} from './stjarnskott-workflow.mjs';
+} from './burp-workflow.mjs';
 
 const execFileAsync = promisify(execFile);
 const DEFAULT_SSE_URL = 'http://127.0.0.1:9876';

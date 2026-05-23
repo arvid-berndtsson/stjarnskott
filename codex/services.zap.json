@@ -1,0 +1,14 @@
+{
+  "services": [
+    {
+      "id": "zap",
+      "kind": "remote-http",
+      "enabled": true,
+      "url": "http://127.0.0.1:8282",
+      "codex": {
+        "export": true,
+        "name": "zap"
+      }
+    }
+  ]
+}

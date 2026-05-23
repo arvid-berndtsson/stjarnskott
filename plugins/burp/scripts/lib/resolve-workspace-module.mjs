@@ -39,13 +39,13 @@ export async function findWorkspaceRoot({ startDir = process.cwd(), searchHome =
   return null;
 }
 
-export async function loadSecurityWorkflowModule({ workspaceRoot, startDir } = {}) {
+export async function loadSharedModule({ workspaceRoot, startDir } = {}) {
   const root = workspaceRoot ?? await findWorkspaceRoot({ startDir });
   if (!root) {
     throw new Error('Could not find a Stjarnskott workspace. Open Codex in the repository root or pass workspace_root explicitly.');
   }
 
-  const modulePath = path.join(root, 'packages', 'security-workflows', 'src', 'index.mjs');
+  const modulePath = path.join(root, 'packages', 'src', 'index.mjs');
   return {
     workspaceRoot: root,
     module: await import(pathToFileURL(modulePath).href)

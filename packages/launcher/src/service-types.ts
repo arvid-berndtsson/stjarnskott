@@ -35,6 +35,7 @@ export type RemoteHttpServiceDefinition = {
   kind: 'remote-http';
   enabled: boolean;
   url: string;
+  headers?: Record<string, string>;
   codex?: CodexExportConfig;
 };
 
