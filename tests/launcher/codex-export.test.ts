@@ -17,8 +17,8 @@ test('renderCodexConfig emits Codex mcp_servers TOML for healthy exported servic
         id: 'burp',
         kind: 'burp-proxy',
         enabled: true,
-        command: './integrations/burp/run-burp-mcp-proxy.sh',
-        args: [],
+        command: 'node',
+        args: ['./plugins/burp/scripts/launch-burp-proxy.mjs'],
         cwd: '/workspace',
         env: {
           BURP_MCP_SSE_URL: 'http://127.0.0.1:9876'
@@ -70,7 +70,8 @@ test('renderCodexConfig emits Codex mcp_servers TOML for healthy exported servic
   const output = renderCodexConfig(statuses);
 
   assert.match(output, /\[mcp_servers\.burp\]/);
-  assert.match(output, /command = "\.\/integrations\/burp\/run-burp-mcp-proxy\.sh"/);
+  assert.match(output, /command = "node"/);
+  assert.match(output, /args = \["\.\/plugins\/burp\/scripts\/launch-burp-proxy\.mjs"\]/);
   assert.match(output, /\[mcp_servers\.vanta\]/);
   assert.match(output, /url = "https:\/\/mcp\.vanta\.com\/mcp"/);
   assert.match(output, /\[mcp_servers\.vanta\.headers\]/);

@@ -18,8 +18,8 @@ test('loadManifest loads a valid manifest with stdio and burp services', async (
           id: 'burp',
           kind: 'burp-proxy',
           enabled: true,
-          command: './integrations/burp/run-burp-mcp-proxy.sh',
-          args: [],
+          command: 'node',
+          args: ['./plugins/burp/scripts/launch-burp-proxy.mjs'],
           cwd: '.',
           env: {
             BURP_MCP_SSE_URL: 'http://127.0.0.1:9876'

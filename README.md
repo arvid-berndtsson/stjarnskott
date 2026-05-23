@@ -39,6 +39,8 @@ npm run prepare:zap -- --url https://127.0.0.1:8282 --security-key "$ZAP_MCP_SEC
 npm test
 ```
 
+For Burp, use Burp's own `Extract server proxy jar` action once, then let this repo launch that extracted proxy for Codex.
+
 Common Vanta endpoints:
 
 - EU default: `https://mcp.eu.vanta.com/mcp`
@@ -64,4 +66,3 @@ Recommended setup for ZAP in this repo:
 - `plugins/` contains the installable Codex plugin bundles.
 - `codex/` contains the shared Codex support files, manifests, and setup scripts.
 - `packages/` contains shared launcher and workflow code that can be reused by future platform targets.
-- `integrations/` contains local integration-specific assets such as the Burp adapter.

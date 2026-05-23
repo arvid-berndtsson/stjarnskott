@@ -212,9 +212,10 @@ export function buildBurpHealthMessage({ burpRunning, listenerReachable, sseUrl,
     'If you want Burp enabled for this run:',
     '1. Make sure Burp Suite is open.',
     '2. In Burp, open Extensions and confirm burp-mcp-all.jar is loaded.',
-    '3. Open the MCP tab and enable the listener.',
-    `4. Leave the listener on ${sseUrl} or update codex/services.json to match Burp.`,
-    '5. Rerun the launcher or the prepare tool.',
+    '3. In the extension Installation section, click "Extract server proxy jar".',
+    '4. Open the MCP tab and enable the listener.',
+    `5. Leave the listener on ${sseUrl} or update codex/services.json to match Burp.`,
+    '6. Rerun the launcher or the prepare tool.',
     'If you do not want Burp for this run, disable the burp service in codex/services.json or use passive shell checks only.',
     `Probe detail: ${listenerDetail}`
   ].join(' ');

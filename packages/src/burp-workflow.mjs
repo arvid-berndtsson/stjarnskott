@@ -644,7 +644,7 @@ async function defaultBurpToolRunner({
   workspaceRoot,
   sseUrl
 }) {
-  const proxyScript = path.join(workspaceRoot ?? process.cwd(), 'integrations', 'burp', 'run-burp-mcp-proxy.sh');
+  const proxyScript = path.join(workspaceRoot ?? process.cwd(), 'plugins', 'burp', 'scripts', 'launch-burp-proxy.mjs');
   const env = {
     ...process.env
   };
@@ -655,7 +655,8 @@ async function defaultBurpToolRunner({
 
   return withBurpMcpClient(
     {
-      command: proxyScript,
+      command: process.execPath,
+      args: [proxyScript],
       cwd: workspaceRoot ?? process.cwd(),
       env
     },
