@@ -4,8 +4,10 @@
       "id": "burp",
       "kind": "burp-proxy",
       "enabled": true,
-      "command": "./integrations/burp/run-burp-mcp-proxy.sh",
-      "args": [],
+      "command": "node",
+      "args": [
+        "./plugins/burp/scripts/launch-burp-proxy.mjs"
+      ],
       "cwd": ".",
       "env": {
         "BURP_MCP_SSE_URL": "http://127.0.0.1:9876"
@@ -30,6 +32,16 @@
       "codex": {
         "export": true,
         "name": "vanta"
+      }
+    },
+    {
+      "id": "zap",
+      "kind": "remote-http",
+      "enabled": true,
+      "url": "http://127.0.0.1:8282",
+      "codex": {
+        "export": true,
+        "name": "zap"
       }
     }
   ]

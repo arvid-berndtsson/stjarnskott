@@ -3,5 +3,7 @@ export type CliOptions = {
   serviceIds: string[];
   targetUrl?: string;
   mode?: 'passive' | 'active';
+  url?: string;
+  securityKey?: string;
+  install?: boolean;
 };
-

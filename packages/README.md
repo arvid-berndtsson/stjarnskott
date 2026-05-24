@@ -4,7 +4,7 @@ This directory contains shared workspace packages used across the Stjarnskott mo
 
 - `launcher/`
   Service startup, manifest loading, Codex export/install, and CLI orchestration.
-- `security-workflows/`
-  Shared Burp-aware workflow logic, passive and active checks, findings generation, and reporting.
+- `src/`
+  Neutral shared source for Burp and ZAP helpers used by the launcher and plugins.
 
 New reusable logic should go here rather than directly into a plugin or a single integration module.

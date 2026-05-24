@@ -5,6 +5,8 @@ node_modules/
 /.codex-*/
 .env
 .env.*
+codex/services.zap.local.json
+codex/*.local.json
 .DS_Store
 img-*.png
 integrations/*/.idea/

@@ -6,6 +6,9 @@ export function parseOptions(args: string[]): CliOptions {
   const serviceIds: string[] = [];
   let targetUrl;
   let mode;
+  let url;
+  let securityKey;
+  let install = false;
 
   for (let index = 0; index < args.length; index += 1) {
     const arg = args[index];
@@ -53,9 +56,35 @@ export function parseOptions(args: string[]): CliOptions {
       continue;
     }
 
+    if (arg === '--url') {
+      const value = args[index + 1];
+      if (!value) {
+        throw new Error('--url requires a value.');
+      }
+
+      url = value;
+      index += 1;
+      continue;
+    }
+
+    if (arg === '--security-key') {
+      const value = args[index + 1];
+      if (!value) {
+        throw new Error('--security-key requires a value.');
+      }
+
+      securityKey = value;
+      index += 1;
+      continue;
+    }
+
+    if (arg === '--install') {
+      install = true;
+      continue;
+    }
+
     throw new Error(`Unknown option "${arg}".`);
   }
 
-  return { manifestPath, serviceIds, targetUrl, mode };
+  return { manifestPath, serviceIds, targetUrl, mode, url, securityKey, install };
 }
-

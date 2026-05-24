@@ -18,8 +18,8 @@ test('loadManifest loads a valid manifest with stdio and burp services', async (
           id: 'burp',
           kind: 'burp-proxy',
           enabled: true,
-          command: './integrations/burp/run-burp-mcp-proxy.sh',
-          args: [],
+          command: 'node',
+          args: ['./plugins/burp/scripts/launch-burp-proxy.mjs'],
           cwd: '.',
           env: {
             BURP_MCP_SSE_URL: 'http://127.0.0.1:9876'
@@ -50,6 +50,9 @@ test('loadManifest loads a valid manifest with stdio and burp services', async (
           kind: 'remote-http',
           enabled: true,
           url: 'https://mcp.eu.vanta.com/mcp',
+          headers: {
+            Authorization: 'Bearer fixture-token'
+          },
           codex: {
             export: true
           }
@@ -66,6 +69,9 @@ test('loadManifest loads a valid manifest with stdio and burp services', async (
   assert.equal(manifest.services[1].kind, 'stdio-mcp');
   assert.equal(manifest.services[2].kind, 'remote-http');
   assert.equal(manifest.services[2].url, 'https://mcp.eu.vanta.com/mcp');
+  assert.deepEqual(manifest.services[2].headers, {
+    Authorization: 'Bearer fixture-token'
+  });
 });
 
 test('loadManifest rejects unknown service kinds', async () => {

@@ -11,7 +11,7 @@ Use this skill when you need to help someone use Burp from Codex for web securit
 
 This plugin is for:
 
-- installing and loading the Burp MCP extension
+- using Burp's own extracted proxy jar with Codex
 - exporting Burp-only Codex MCP config from this repo
 - troubleshooting Burp listener and proxy failures
 - running passive-first security checks
@@ -19,8 +19,7 @@ This plugin is for:
 
 ## Local Files
 
-- Burp extension JAR: `integrations/burp/build/libs/burp-mcp-all.jar`
-- Burp proxy launcher: `integrations/burp/run-burp-mcp-proxy.sh`
+- Burp proxy launcher: `plugins/burp/scripts/launch-burp-proxy.mjs`
 - Burp-only manifest: `codex/services.burp.json`
 - Codex wrapper CLI: `codex/src/cli.ts`
 - Generated Codex output: `generated/codex/`
@@ -59,4 +58,6 @@ If Burp is open but Codex cannot use it:
 - check `generated/codex/status.json`
 - check `generated/codex/logs/burp.stderr.log`
 - confirm the Burp MCP listener is enabled on `127.0.0.1:9876`
+- in Burp, click `Extract server proxy jar` once so the proxy JAR exists under Burp's default location
+- if the proxy JAR lives somewhere else, set `BURP_MCP_PROXY_JAR`
 - rerun the Burp-only export

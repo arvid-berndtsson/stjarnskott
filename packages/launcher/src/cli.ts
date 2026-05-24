@@ -1,6 +1,7 @@
 import { parseOptions } from './cli-options.ts';
 import { runExport } from './commands/export.ts';
 import { runInstall } from './commands/install.ts';
+import { runPrepareZap } from './commands/prepare-zap.ts';
 import { runStart } from './commands/start.ts';
 import { runUninstall } from './commands/uninstall.ts';
 import { runWorkflow } from './commands/workflow.ts';
@@ -25,8 +26,11 @@ async function main(): Promise<void> {
     case 'workflow':
       await runWorkflow(options);
       return;
+    case 'prepare-zap':
+      await runPrepareZap(options);
+      return;
     default:
-      throw new Error(`Unknown command "${command}". Use start, export, install, uninstall, or workflow.`);
+      throw new Error(`Unknown command "${command}". Use start, export, install, uninstall, workflow, or prepare-zap.`);
   }
 }
 

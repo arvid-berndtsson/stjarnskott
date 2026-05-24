@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "zap": {
+      "type": "http",
+      "url": "http://127.0.0.1:8282",
+      "note": "Official OWASP ZAP MCP Integration add-on. Defaults here to local HTTP for Codex compatibility with ZAP's self-signed local certificate; switch to HTTPS and add an Authorization header if you keep ZAP's security key enabled."
+    }
+  }
+}

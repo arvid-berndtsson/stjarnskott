@@ -1,9 +1,9 @@
-import { runStjarnskottWorkflow } from '../../../security-workflows/src/index.mjs';
+import { runBurpWorkflow } from '../../../src/index.mjs';
 import type { CliOptions } from '../cli-types.ts';
 
 export async function runWorkflow(options: CliOptions): Promise<void> {
   const workspaceRoot = process.cwd();
-  const result = await runStjarnskottWorkflow({
+  const result = await runBurpWorkflow({
     workspaceRoot,
     targetUrl: options.targetUrl,
     mode: options.mode
