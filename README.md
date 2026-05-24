@@ -60,9 +60,12 @@ Recommended setup for ZAP in this repo:
 - run `npm run prepare:zap -- --url https://127.0.0.1:8282 --security-key "$ZAP_MCP_SECURITY_KEY" --install`
 - if the health check reports certificate issues, either trust the ZAP root CA or retry with local HTTP for development
 
+Detailed ZAP setup instructions live in [instructions/owasp-zap-mcp.md](/Users/arvid/.codex/worktrees/fab6/stjarnskott/instructions/owasp-zap-mcp.md).
+
 ## Repo Layout
 
 - `.agents/plugins/marketplace.json` makes the repository root a Codex marketplace.
 - `plugins/` contains the installable Codex plugin bundles.
 - `codex/` contains the shared Codex support files, manifests, and setup scripts.
+- `instructions/` contains focused setup guides that would otherwise make the main README too long.
 - `packages/` contains shared launcher and workflow code that can be reused by future platform targets.
