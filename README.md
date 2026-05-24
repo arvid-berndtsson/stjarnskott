@@ -41,6 +41,8 @@ npm test
 
 For Burp, use Burp's own `Extract server proxy jar` action once, then let this repo launch that extracted proxy for Codex.
 
+Detailed Burp setup instructions live in [instructions/burp-mcp.md](/Users/arvid/.codex/worktrees/fab6/stjarnskott/instructions/burp-mcp.md).
+
 Common Vanta endpoints:
 
 - EU default: `https://mcp.eu.vanta.com/mcp`
